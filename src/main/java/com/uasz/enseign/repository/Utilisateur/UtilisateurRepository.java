@@ -1,20 +1,17 @@
 package com.uasz.enseign.repository.Utilisateur;
 
-import com.uasz.enseign.entities.Utilisateur.Utilisateur;
-import com.uasz.enseign.entities.Maquette.UE;
+import com.uasz.enseign.model.Maquette.UE;
+import com.uasz.enseign.model.Utilisateur.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.query.Param;
 
-import java.util.Collection;
+import java.util.List;
 
-@Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
-    // Méthode personnalisée pour rechercher des UE associées à un utilisateur
-    @Query("SELECT u.ues FROM Utilisateur u WHERE u.idUser = :userId")
-    Collection<UE> findUesByUtilisateurId(Long userId);
-
-    // Ajoutez d'autres méthodes personnalisées au besoin
-
+    List<Utilisateur> findByNom(String nom);
+//
+//    List<Utilisateur> findByPrenom(String prenom);
+//
+//    List<Utilisateur> findByUes_Id(Long ueId);
 }

@@ -1,24 +1,27 @@
 package com.uasz.enseign.dto.Maquette;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class MaquetteDTO {
-
-    private Long idMaquette;
-    private String libelle;
-    private String description;
-    private Date dateCreation;
-    private List<ModuleDTO> modules;
+    private Long id;
+    private String ue;
+    private int credit;
+    private int coefUe;
+    private String intitule;
+    private int cm;
+    private int td;
+    private int tp;
+    private int cumule;
+    private int tpe;
+    private int vh;
+    private int coef;
     private FormationDTO formation;
-
-    // Aucun besoin d'ajouter explicitement des méthodes getter et setter grâce à Lombok
+    private List<ModuleDTO> modules;
 }
 

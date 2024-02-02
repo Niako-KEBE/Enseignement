@@ -1,9 +1,10 @@
 package com.uasz.enseign.repository.Maquette;
 
-import com.uasz.enseign.entities.Maquette.Filiere;
-import com.uasz.enseign.entities.Maquette.Formation;
+import com.uasz.enseign.model.Maquette.Filiere; // Importez l'entité plutôt que le DTO
+import com.uasz.enseign.model.Maquette.Formation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,10 +12,8 @@ import java.util.List;
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere, Long> {
 
-    // Méthode personnalisée pour récupérer toutes les formations associées à une filière
-    @Query("SELECT f.formations FROM Filiere f WHERE f.idFiliere = :filiereId")
-    List<Formation> findFormationsByFiliereId(Long filiereId);
+    List<Filiere> findByNom(String nom);
 
-    // Vous pouvez ajouter d'autres méthodes personnalisées au besoin
-
+    @Query("SELECT f FROM Filiere f JOIN f.formations fo WHERE fo = :formation")
+    List<Filiere> findByFormation(@Param("formation") Formation formation);
 }

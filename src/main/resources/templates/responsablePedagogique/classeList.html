@@ -1,0 +1,199 @@
+<!--<!doctype html>-->
+<!--<html lang="fr" class="minimal-theme" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head  th:replace="/responsablePedagogique/fragments :: header">-->
+<!--    </head>-->
+<!--<body>-->
+<!--<div class="wrapper">-->
+<!--    &lt;!&ndash;start top header&ndash;&gt;-->
+<!--    <header th:replace="/responsablePedagogique/fragments :: topHeader"></header>-->
+<!--    &lt;!&ndash;end top header&ndash;&gt;-->
+
+<!--    &lt;!&ndash;start sidebar &ndash;&gt;-->
+<!--    <aside th:replace="/responsablePedagogique/fragments :: sidebarWrapper"></aside>-->
+<!--    &lt;!&ndash;start content&ndash;&gt;-->
+<!--    <main class="page-content">-->
+<!--        &lt;!&ndash;breadcrumb&ndash;&gt;-->
+<!--        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">-->
+<!--            <div class="breadcrumb-title pe-3">Responsable Pedagogique</div>-->
+<!--            <div class="ps-3">-->
+<!--                <nav aria-label="breadcrumb">-->
+<!--                    <ol class="breadcrumb mb-0 p-0">-->
+<!--                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>-->
+<!--                        </li>-->
+<!--                        <li class="breadcrumb-item active" aria-current="page">Gestion des Classes</li>-->
+<!--                    </ol>-->
+<!--                </nav>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;end breadcrumb&ndash;&gt;-->
+
+<!--        <div class="card">-->
+<!--            <div class="card-header py-3">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"-->
+<!--                        data-bs-target="#addModalClass">ajouter une nouvelle classe</button>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12 col-lg-12 d-flex">-->
+<!--                        <div class="card border shadow-none w-100">-->
+<!--                            <div class="card-body">-->
+<!--                                <div th:if="${tailleList == 0}">-->
+<!--                                    <p>Aucune Classe trouve</p>-->
+<!--                                </div>-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table align-middle" th:if="${size > 0}" id="myTable">-->
+<!--                                        <thead class="table-light">-->
+<!--                                        <tr>-->
+<!--                                            <th>ID</th>-->
+<!--                                            <th>Libelle</th>-->
+<!--                                            <th>Effectif</th>-->
+<!--                                            <th>Nombre de Groupes</th>-->
+<!--                                            <th>Description</th>-->
+<!--                                            <th>Semestre</th>-->
+<!--                                            <th>Formation</th>-->
+<!--                                            <th>Action</th>-->
+<!--                                        </tr>-->
+<!--                                        </thead>-->
+<!--                                        <tbody>-->
+<!--                                        <tr th:each="classe : ${classes}">-->
+<!--                                            <td th:text="${classe.id}"></td>-->
+<!--                                            <td th:text="${classe.libelle}"></td>-->
+<!--                                            <td th:text="${classe.effectif}"></td>-->
+<!--                                            <td th:text="${classe.nbreGroupe}"></td>-->
+<!--                                            <td th:text="${classe.description}"></td>-->
+<!--                                            <td th:text="${classe.semestre?.nom}"></td>-->
+<!--                                            <td th:text="${classe.formation?.nom}"></td>-->
+<!--                                            <td>-->
+<!--                                                <div class="d-flex align-items-center gap-3 fs-6">-->
+<!--                                                    <a data-bs-target="#deleteModalClass"-->
+<!--                                                       class="text-danger deleteButton" data-bs-toggle="modal"-->
+<!--                                                       data-bs-placement="bottom"-->
+<!--                                                       th:href="@{/deleteClass/{id}(id=${classe.id})}"-->
+<!--                                                       title="Supprimer"-->
+<!--                                                       data-bs-original-title="Supprimer" aria-label="Supprimer">-->
+<!--                                                        <i class="bi bi-trash-fill"></i>-->
+<!--                                                    </a>-->
+<!--                                                    <a th:href="@{/responsablePedagogique/update-class/{id}(id=${classe.id})}"-->
+<!--                                                       data-bs-target="#updateModalClass"-->
+<!--                                                       class="text-warning updateButtonClass"-->
+<!--                                                       data-bs-toggle="modal" data-bs-placement="bottom"-->
+<!--                                                       title="Modifier les infos"-->
+<!--                                                       data-bs-original-title="Modifier les infos"-->
+<!--                                                       aria-label="Modifier">-->
+<!--                                                        <i class="bi bi-pencil-fill"></i>-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>&lt;!&ndash;end row&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </main>-->
+<!--    &lt;!&ndash;end page main&ndash;&gt;    &lt;!&ndash;end page main&ndash;&gt;-->
+
+<!--    &lt;!&ndash;start overlay&ndash;&gt;-->
+<!--    <div class="overlay nav-toggle-icon"></div>-->
+<!--    &lt;!&ndash;end overlay&ndash;&gt;-->
+
+<!--    &lt;!&ndash;Start Back To Top Button&ndash;&gt;-->
+<!--    <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>-->
+<!--    &lt;!&ndash;End Back To Top Button&ndash;&gt;-->
+
+<!--    &lt;!&ndash;start switcher&ndash;&gt;-->
+<!--    &lt;!&ndash;<div th:replace="/responsablePedagogique/fragments :: switcherBody"></div>&ndash;&gt;-->
+<!--    &lt;!&ndash;end switcher&ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash;end wrapper&ndash;&gt;<div class="modal fade" id="addModalClass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel1">Ajouter Classe</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <form th:action="@{/addClasse}" method="post" enctype="multipart/form-data" id="createClasseForm" name="createClasseForm">-->
+<!--                <div class="modal-body">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="libelle" class="form-label">Libellé:</label>-->
+<!--                        <input type="text" class="form-control" id="libelle" name="libelle" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="effectif" class="form-label">Effectif:</label>-->
+<!--                        <input type="number" min="0" class="form-control" id="effectif" name="effectif" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="nbreGroupe" class="form-label">Nombre de Groupes:</label>-->
+<!--                        <input type="number" min="0" class="form-control" id="nbreGroupe" name="nbreGroupe">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="description" class="form-label">Description:</label>-->
+<!--                        <input type="text" class="form-control" id="description" name="description">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>-->
+<!--                    <button type="submit" class="btn btn-primary">Ajouter</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel2">Modifier Classe</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <form th:action="@{/EditClasse}" method="post" enctype="multipart/form-data" id="updateClasseForm" name="updateClasseForm">-->
+<!--                <div class="modal-body">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="libelle" class="form-label">Libellé:</label>-->
+<!--                        <input type="text" class="form-control" id="libelle1" name="libelle" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="effectif" class="form-label">Effectif:</label>-->
+<!--                        <input type="number" min="0" class="form-control" id="effectif1" name="effectif" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="nbreGroupe" class="form-label">Nombre de Groupes:</label>-->
+<!--                        <input type="number" min="0" class="form-control" id="nbreGroupe1" name="nbreGroupe">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="description" class="form-label">Description:</label>-->
+<!--                        <input type="text" class="form-control" id="description1" name="description">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>-->
+<!--                    <button type="submit" class="btn btn-primary">Ajouter</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--</div>-->
+
+<!--<div th:replace="/responsablePedagogique/fragments :: modalDelete"></div>-->
+
+<!--&lt;!&ndash; Bootstrap bundle JS &ndash;&gt;-->
+<!--<div th:replace="/responsablePedagogique/fragments :: footerScript"></div>-->
+<!--<script>-->
+<!--    $(document).ready( function () {-->
+<!--        $('#myTable').DataTable();-->
+<!--    } );-->
+<!--</script>-->
+
+<!--</body>-->
+
+<!--</html>-->

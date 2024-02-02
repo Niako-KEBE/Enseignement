@@ -1,25 +1,32 @@
 package com.uasz.enseign.repository.EmploiDuTemps;
 
-import com.uasz.enseign.entities.EmploiDuTemps.Seance;
+import com.uasz.enseign.model.Emploie_Du_Temps.Seance;
+import com.uasz.enseign.model.Emploie_Du_Temps.Emploi;
+import com.uasz.enseign.model.Emploie_Du_Temps.Deroulement;
+import com.uasz.enseign.model.Repartition.Repartition;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface SeanceRepository extends JpaRepository<Seance, Long> {
 
-    // Recherche des séances associées à un jour spécifique
-    List<Seance> findByJour(String jour);
+    List<Seance> findByTitre(String titre);
 
-    // Recherche des séances associées à une répartition
-    List<Seance> findByRepartitionId(Long repartitionId);
+    List<Seance> findByDateDebutAfter(Date dateDebut);
 
-    // Recherche des séances associées à un emploi du temps
-    List<Seance> findByEmploiId(Long emploiId);
+    List<Seance> findByDateFinBefore(Date dateFin);
 
-    // Recherche des séances associées à un déroulement
-    List<Seance> findByDeroulementId(Long deroulementId);
+    List<Seance> findByEmploi(Emploi emploi);
 
-    // Ajoutez d'autres méthodes personnalisées au besoin
+    List<Seance> findByDeroulement(Deroulement deroulement);
+
+    List<Seance> findByRepartition(Repartition repartition);
+
+    @Query("SELECT s FROM Seance s WHERE s.dateDebut >= :startDate AND s.dateFin <= :endDate")
+    List<Seance> findByDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

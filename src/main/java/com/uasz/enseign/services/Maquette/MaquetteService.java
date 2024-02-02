@@ -1,59 +1,21 @@
 package com.uasz.enseign.services.Maquette;
 
-import com.uasz.enseign.entities.Maquette.Maquette;
-import com.uasz.enseign.entities.Maquette.Module;
-import com.uasz.enseign.repository.Maquette.MaquetteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.uasz.enseign.dto.Maquette.MaquetteDTO;
 
 import java.util.List;
 
-@Service
-public class MaquetteService {
+public interface MaquetteService {
 
-    @Autowired
-    private MaquetteRepository maquetteRepository;
+    List<MaquetteDTO> getAllMaquettes();
 
-    // Méthode pour ajouter une maquette
-    public void ajouterMaquette(Maquette maquette) {
-        maquette.saveMaquette(); // Validation de la maquette avant de la sauvegarder
-        maquetteRepository.save(maquette);
-    }
+    MaquetteDTO getMaquetteById(Long id);
 
-    // Méthode pour afficher toutes les maquettes
-    public List<Maquette> afficherToutesMaquettes() {
-        return maquetteRepository.findAll();
-    }
+    MaquetteDTO createMaquette(MaquetteDTO maquetteDTO);
 
-    // Méthode pour afficher une maquette par son ID
-    public Maquette afficherMaquette(Long idMaquette) {
-        return maquetteRepository.getById(idMaquette);
-    }
+    MaquetteDTO updateMaquette(Long id, MaquetteDTO maquetteDTO);
 
-    // Méthode pour modifier une maquette
-    public void modifierMaquette(Maquette maquette) {
-        maquette.saveMaquette(); // Validation de la maquette avant de la modifier
+    void deleteMaquette(Long id);
 
-        // Récupération de la maquette à mettre à jour depuis le repository
-        Maquette maquetteUpdate = maquetteRepository.getById(maquette.getIdMaquette());
+    List<MaquetteDTO> getMaquettesByFormationId(Long formationId);
 
-        // Mise à jour des propriétés de la maquette avec les nouvelles valeurs
-        maquetteUpdate.setLibelle(maquette.getLibelle());
-        maquetteUpdate.setDescription(maquette.getDescription());
-
-        // Sauvegarde de la maquette mise à jour dans le repository
-        maquetteRepository.save(maquetteUpdate);
-    }
-
-    // Méthode pour supprimer une maquette
-    public void supprimerMaquette(Long idMaquette) {
-        maquetteRepository.deleteById(idMaquette);
-    }
-
-    // Méthode pour trouver les maquettes associées à un module
-    public List<Maquette> trouverMaquettesParModule(Module module) {
-        return maquetteRepository.findByModule(module);
-    }
-
-    // Ajoutez d'autres méthodes personnalisées au besoin
 }

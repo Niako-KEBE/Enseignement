@@ -1,0 +1,568 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="fr" class="minimal-theme" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:fragment="header">-->
+<!--    &lt;!&ndash; Required meta tags &ndash;&gt;-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--&lt;!&ndash;    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;plugins&ndash;&gt;-->
+<!--    <link th:href="@{/assets/plugins/simplebar/css/simplebar.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css}" rel="stylesheet" />-->
+
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/css/bootstrap-extended.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/css/icons.css}" rel="stylesheet">-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">-->
+
+<!--    &lt;!&ndash; loader&ndash;&gt;-->
+<!--    <link th:href="@{/assets/css/pace.min.css}" rel="stylesheet" />-->
+
+<!--    &lt;!&ndash;Theme Styles&ndash;&gt;-->
+<!--    <link th:href="@{/assets/css/dark-theme.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/css/light-theme.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/css/semi-dark.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/assets/css/header-colors.css}" rel="stylesheet" />-->
+
+<!--    <link th:href="@{/assets/css/jquery.dataTables.min.css}" rel="stylesheet" />-->
+<!--    <title>Responsable Pédagogique</title>-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--&lt;!&ndash;start wrapper&ndash;&gt;-->
+<!--<div class="wrapper">-->
+<!--    &lt;!&ndash;start top header&ndash;&gt;-->
+<!--    <header th:fragment="topHeader" class="top-header">-->
+<!--        <nav class="navbar navbar-expand">-->
+<!--                <div class="mobile-toggle-icon d-xl-none">-->
+<!--                    <i class="bi bi-list"></i>-->
+<!--                </div>-->
+<!--                <div class="top-navbar d-none d-xl-block">-->
+<!--                    <ul class="navbar-nav align-items-center">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/templates/responsablePedagogique/index}">Dashboard</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="d-xl-none ms-auto">-->
+
+<!--                </div>-->
+<!--                <form class="searchbar d-none d-xl-flex ms-auto">-->
+<!--                    <div class="position-absolute top-50 translate-middle-y d-block d-xl-none "></div>-->
+<!--                </form>-->
+<!--                <div class="top-navbar-right ms-3">-->
+<!--                    <ul class="navbar-nav align-items-center">-->
+<!--                        <li class="nav-item dropdown dropdown-large">-->
+<!--                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">-->
+<!--                                <div class="user-setting d-flex align-items-center gap-1">-->
+<!--&lt;!&ndash;                                    <img src="img/defaultUser.png" class="user-img" alt="">&ndash;&gt;-->
+<!--                                    <div class="user-name d-none d-sm-block">[[*{nomresponsablePedagogique}]]</div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                            <ul class="dropdown-menu dropdown-menu-end">-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item">-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--&lt;!&ndash;                                            <img src="img/defaultUser.png" alt="" class="rounded-circle" width="60" height="60">&ndash;&gt;-->
+<!--                                            <div class="ms-3">-->
+<!--                                                <h6 class="mb-0 dropdown-user-name">[[*{nomresponsablePedagogique}]]</h6>-->
+<!--                                                <small class="mb-0 dropdown-user-designation text-secondary">Responsable Pedagogique </small>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li><hr class="dropdown-divider"></li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" th:href="@{/responsablePedagogique/profile}">-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            <div class="setting-icon"><i class="bi bi-person-fill"></i></div>-->
+<!--                                            <div class="setting-text ms-3"><span>Profile</span></div>-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li><hr class="dropdown-divider"></li>-->
+<!--                                <li>-->
+<!--                                    <a class="dropdown-item" th:href="@{/logout}">-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            <div class="setting-icon"><i class="bi bi-lock-fill"></i></div>-->
+<!--                                            <div class="setting-text ms-3"><span>Deconnexion</span></div>-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item dropdown dropdown-large">-->
+<!--                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"  data-bs-toggle="dropdown">-->
+<!--                                <div class="projects">-->
+<!--                                    <i class="bi bi-grid-3x3-gap-fill"></i>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                            <div class="dropdown-menu dropdown-menu-end"->-->
+<!--                                <div class="row row-cols-3 gx-2">-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/classeList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-primary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Classes</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/cycleList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-danger bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Cycle</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/ecList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">EC</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/filiereList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Filiere</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/formationList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Formation</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/groupeList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Groupe</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/maquetteList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Maquette</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/moduleList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Module</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/niveauList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Niveau</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/semestreList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">Semestre</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <a th:href="@{/responsablePedagogique/ueList}">-->
+<!--                                            <div class="apps p-2 radius-10 text-center">-->
+<!--                                                <div class="apps-icon-box mb-1 text-white bg-secondary bg-gradient">-->
+<!--                                                    <i class="bi "></i>-->
+<!--                                                </div>-->
+<!--                                                <p class="mb-0 apps-name">UE</p>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+
+<!--                                </div>&lt;!&ndash;end row&ndash;&gt;-->
+
+
+
+
+
+
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </nav>-->
+<!--        </header>-->
+<!--        &lt;!&ndash;end top header&ndash;&gt;-->
+
+<!--    &lt;!&ndash;start sidebar &ndash;&gt;-->
+<!--    <aside th:fragment="sidebarWrapper" class="sidebar-wrapper">-->
+<!--        <div class="iconmenu">-->
+<!--            <div class="nav-toggle-box">-->
+<!--                <div class="nav-toggle-icon"><i class="bi bi-list"></i></div>-->
+<!--            </div>-->
+<!--            <ul class="nav nav-pills flex-column">-->
+<!--                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="responsablepedagogique">-->
+<!--                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-ecommerce" type="button"><i class="bi bi-bag-check-fill"></i></button>-->
+<!--                </li>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div class="textmenu">-->
+<!--            <div class="brand-logo">-->
+<!--&lt;!&ndash;                <img src="assets/images/uaszLogo.png" width="50" height="50" alt=""/>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="tab-content">-->
+<!--                <div class="tab-pane fade" id="pills-ecommerce">-->
+<!--                    <div class="list-group list-group-flush">-->
+<!--                        <div class="list-group-item">-->
+<!--                            <div class="d-flex w-100 justify-content-between">-->
+<!--                                <h5 class="mb-0">Responsable Pedagogique</h5>-->
+<!--                            </div>-->
+<!--                            <small class="mb-0">Certains contenus d'espace réservé</small>-->
+<!--                        </div>-->
+<!--                        <a th:href="@{/responsablePedagogique/classeList}" class="list-group-item"><i class="bi bi-box-seam"></i>Gestion des Classes</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/cycleList}" class="list-group-item"><i class="bi bi-card-text"></i>Gestion des Cycles</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/filiereList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Filieres</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/formationList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Formations</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/groupeList}" class="list-group-item"><i class="bi bi-plus-square"></i> Gestion des Groupes</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/maquetteList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Maquettes/a>-->
+<!--                        <a th:href="@{/responsablePedagogique/moduleList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Modules</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/niveauList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Niveaux</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/semestreList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Semestres</a>-->
+<!--                        <a th:href="@{/responsablePedagogique/ueList}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des UEs</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </aside>-->
+<!--    &lt;!&ndash;end sidebar &ndash;&gt;-->
+
+<!--    &lt;!&ndash;start content&ndash;&gt;-->
+<!--    <main th:fragment="startContent" class="page-content">-->
+<!--        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-4">-->
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Classes</p>-->
+<!--                                <h4 class="my-1 text-success">[[*{nbrClasse}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total Cycle</p>-->
+<!--                                <h4 class="my-1 text-success">[[*{nbrCycle}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Filieres</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrFilieres}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Formations</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrFormation}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Groupes</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrGroupes}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Maquettes</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrMaquette}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Modules</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrModules}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Niveaux</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrNiveau}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des semestres</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrSemestre}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des Ues</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrUE}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--            <div class="col">-->
+<!--                <div class="card radius-10">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="d-flex align-items-center">-->
+<!--                            <div>-->
+<!--                                <p class="mb-0 text-secondary">Total des ECs</p>-->
+<!--                                <h4 class="my-1  text-success">[[*{nbrEC}]]</h4>-->
+<!--                            </div>-->
+<!--                            <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi "></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </main>-->
+<!--    &lt;!&ndash;end page main&ndash;&gt;-->
+
+
+<!--    &lt;!&ndash;start overlay&ndash;&gt;-->
+<!--    <div th:fragment="navToggleIcon" class="overlay nav-toggle-icon"></div>-->
+<!--    &lt;!&ndash;end overlay&ndash;&gt;-->
+
+<!--    &lt;!&ndash;Start Back To Top Button&ndash;&gt;-->
+<!--    <a th:fragment="backToTop" href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>-->
+<!--    &lt;!&ndash;End Back To Top Button&ndash;&gt;-->
+
+<!--    &lt;!&ndash;start switcher&ndash;&gt;-->
+<!--    <div th:fragment="switcherBody"  class="switcher-body">-->
+<!--        <button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-paint-bucket me-0"></i></button>-->
+<!--        <div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling">-->
+<!--            <div class="offcanvas-header border-bottom">-->
+<!--                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Customizer</h5>-->
+<!--                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>-->
+<!--            </div>-->
+<!--            <div class="offcanvas-body">-->
+<!--                <h6 class="mb-0">Theme Variation</h6>-->
+<!--                <hr>-->
+<!--                <div class="form-check form-check-inline">-->
+<!--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="LightTheme" value="option1">-->
+<!--                    <label class="form-check-label" for="LightTheme">Light</label>-->
+<!--                </div>-->
+<!--                <div class="form-check form-check-inline">-->
+<!--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="DarkTheme" value="option2">-->
+<!--                    <label class="form-check-label" for="DarkTheme">Dark</label>-->
+<!--                </div>-->
+<!--                <div class="form-check form-check-inline">-->
+<!--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3">-->
+<!--                    <label class="form-check-label" for="SemiDarkTheme">Semi Dark</label>-->
+<!--                </div>-->
+<!--                <hr>-->
+<!--                <div class="form-check form-check-inline">-->
+<!--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="MinimalTheme" value="option3" checked>-->
+<!--                    <label class="form-check-label" for="MinimalTheme">Minimal Theme</label>-->
+<!--                </div>-->
+<!--                <hr/>-->
+<!--                <h6 class="mb-0">Header Colors</h6>-->
+<!--                <hr/>-->
+<!--                <div class="header-colors-indigators">-->
+<!--                    <div class="row row-cols-auto g-3">-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor1" id="headercolor1"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor2" id="headercolor2"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor3" id="headercolor3"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor4" id="headercolor4"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor5" id="headercolor5"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor6" id="headercolor6"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor7" id="headercolor7"></div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="indigator headercolor8" id="headercolor8"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;end switcher&ndash;&gt;-->
+
+<!--</div>-->
+<!--&lt;!&ndash;end wrapper&ndash;&gt;-->
+
+<!--<div th:fragment="modalDelete" class="modal" tabindex="-1" role="dialog" id="deleteModa" >-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Confirmation de la suppression</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">-->
+
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p>êtes-vous sûr de vouloir supprimer l'enregistrement sélectionné.</p>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <a href="" class="btn btn-danger" id="deleteId">Oui,Supprimer</a>-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Bootstrap bundle JS &ndash;&gt;-->
+<!--<div th:fragment="footerScript">-->
+<!--    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>-->
+
+<!--    &lt;!&ndash;plugins&ndash;&gt;-->
+<!--    <script th:src="@{/assets/js/jquery.min.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/simplebar/js/simplebar.min.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js}"></script>-->
+<!--    <script th:src="@{/assets/js/pace.min.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/apexcharts-bundle/js/apexcharts.min.js}"></script>-->
+<!--    &lt;!&ndash;app&ndash;&gt;-->
+<!--    <script th:src="@{/assets/js/app.js}"></script>-->
+<!--    <script th:src="@{/assets/js/index.js}"></script>-->
+<!--    <script th:src="@{/assets/js/jquery.dataTables.min.js}"></script>-->
+<!--    <script th:src="@{/assets/js/main.js}"></script>-->
+<!--    <script th:src="@{/assets/js/mainPost.js}"></script>-->
+<!--    <script>-->
+<!--        new PerfectScrollbar(".best-product")-->
+<!--        new PerfectScrollbar(".top-sellers-list")-->
+<!--    </script>-->
+
+<!--</div>-->
+
+<!--</body>-->
+
+<!--</html>-->

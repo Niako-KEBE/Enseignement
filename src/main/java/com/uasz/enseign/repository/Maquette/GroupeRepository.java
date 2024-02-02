@@ -1,9 +1,11 @@
 package com.uasz.enseign.repository.Maquette;
 
-import com.uasz.enseign.entities.Maquette.Groupe;
-import com.uasz.enseign.entities.Repartition.Enseignement;
+import com.uasz.enseign.model.Maquette.Groupe; // Importez l'entité plutôt que le DTO
+import com.uasz.enseign.model.Maquette.Enseignement;
+import com.uasz.enseign.model.Maquette.Classe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,10 +13,14 @@ import java.util.List;
 @Repository
 public interface GroupeRepository extends JpaRepository<Groupe, Long> {
 
-    // Méthode pour récupérer les enseignements associés à un groupe
-    @Query("SELECT e FROM Enseignement e WHERE e.groupe = ?1")
-    List<Enseignement> findEnseignementsByGroupe(Groupe groupe);
+    List<Groupe> findByLibelle(String libelle);
 
-    // Ajoutez d'autres méthodes personnalisées au besoin
+    List<Groupe> findByEffectifGreaterThan(int effectif);
+
+    List<Groupe> findByClasse(Classe classe);
+
+    @Query("SELECT g FROM Groupe g JOIN g.enseignement e WHERE e = :enseignement")
+    List<Groupe> findByEnseignement(@Param("enseignement") Enseignement enseignement);
+
 
 }

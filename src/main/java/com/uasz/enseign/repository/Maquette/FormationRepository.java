@@ -1,8 +1,13 @@
 package com.uasz.enseign.repository.Maquette;
 
-import com.uasz.enseign.entities.Maquette.Formation;
+import com.uasz.enseign.model.Maquette.Formation; // Importez l'entité plutôt que le DTO
+import com.uasz.enseign.model.Maquette.Filiere;
+import com.uasz.enseign.model.Maquette.Maquette;
+import com.uasz.enseign.model.Maquette.Classe;
+import com.uasz.enseign.model.Maquette.Niveau;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,24 +15,14 @@ import java.util.List;
 @Repository
 public interface FormationRepository extends JpaRepository<Formation, Long> {
 
-    // Méthode personnalisée pour rechercher des formations par libellé
-    List<Formation> findByLibelleContainingIgnoreCase(String libelle);
+    List<Formation> findByNom(String nom);
 
-    // Méthode personnalisée pour rechercher des formations par filière
-    List<Formation> findByFiliereId(Long filiereId);
+    List<Formation> findByFiliere(Filiere filiere);
 
-    // Méthode personnalisée pour récupérer les formations ayant une description non vide
-    @Query("SELECT f FROM Formation f WHERE f.description IS NOT NULL AND f.description <> ''")
-    List<Formation> findFormationsWithDescription();
+    List<Formation> findByMaquette(Maquette maquette);
 
-    // Méthode personnalisée pour rechercher des formations par classe
-    @Query("SELECT f FROM Formation f JOIN f.classes c WHERE c.idClasse = ?1")
-    List<Formation> findByClasseId(Long classeId);
+    @Query("SELECT f FROM Formation f JOIN f.classes c WHERE c = :classe")
+    List<Formation> findByClasse(@Param("classe") Classe classe);
 
-    // Méthode personnalisée pour rechercher des formations par maquette
-    @Query("SELECT f FROM Formation f WHERE f.maquette.idMaquette = ?1")
-    List<Formation> findByMaquetteId(Long maquetteId);
-
-    // Vous pouvez ajouter d'autres méthodes personnalisées au besoin
-
+    List<Formation> findByNiveau(Niveau niveau);
 }

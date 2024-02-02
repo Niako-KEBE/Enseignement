@@ -1,26 +1,32 @@
 package com.uasz.enseign.dto.Repartition;
 
 import com.uasz.enseign.dto.EmploiDuTemps.SeanceDTO;
+import com.uasz.enseign.dto.Maquette.EnseignementDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class RepartitionDTO {
-
-    private Long idRepartition;
-    private String description;
-    private Date dateDebut;
-    private Date dateFin;
+    private Long id;
+    private String classe;
+    private int effectif;
+    private int semestre;
     private EnseignementDTO enseignement;
+    private int credit;
+    private int dureeCours;
     private EnseignantDTO enseignant;
+    private int cm;
+    private String responsableTD;
+    private String responsableTP;
+    private int travauxDirige;
+    private int travauxPratique;
     private List<SeanceDTO> seances;
-
-    // Aucun besoin d'ajouter explicitement des méthodes getter et setter grâce à Lombok
 }
+
 

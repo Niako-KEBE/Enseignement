@@ -1,9 +1,9 @@
 package com.uasz.enseign.repository.Repartition;
 
-import com.uasz.enseign.entities.Repartition.Repartition;
-import com.uasz.enseign.entities.EmploiDuTemps.Seance;
+import com.uasz.enseign.model.Repartition.Repartition;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,9 +11,14 @@ import java.util.List;
 @Repository
 public interface RepartitionRepository extends JpaRepository<Repartition, Long> {
 
-    // ... (autres méthodes personnalisées)
+    List<Repartition> findByClasse(String classe);
 
-    // Recherche des séances associées à une répartition par son identifiant
-    @Query("SELECT s FROM Seance s WHERE s.repartition.idRepartition = :repartitionId")
-    List<Seance> findSeancesByRepartitionId(Long repartitionId);
+    List<Repartition> findByEnseignementId(Long enseignementId);
+
+    List<Repartition> findByEnseignantId(Long enseignantId);
+
+    List<Repartition> findBySemestreAndCreditGreaterThan(int semestre, int credit);
+
+    @Query("SELECT r FROM Repartition r WHERE r.dureeCours >= :dureeCours")
+    List<Repartition> findByDureeCoursGreaterThan(@Param("dureeCours") int dureeCours);
 }

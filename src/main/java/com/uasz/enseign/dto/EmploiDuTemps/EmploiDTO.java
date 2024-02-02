@@ -11,12 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmploiDTO {
-
-    private Long idEmploi;
+    private Long id;
     private int duree;
     private Date debut;
     private Date fin;
-    private Date dateCreation;
     private List<SeanceDTO> seances;
-
 }

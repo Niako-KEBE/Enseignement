@@ -11,17 +11,11 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SeanceDTO {
-
-    private Long idSeance;
-    private String jour;
-    private int duree;
-    private String debut;
-    private String fin;
-    private int numero;
-    private Date dateCreation;
-    private RepartitionDTO repartition;
+    private Long id;
+    private String titre;
+    private Date dateDebut;
+    private Date dateFin;
     private EmploiDTO emploi;
     private DeroulementDTO deroulement;
-    private SalleDTO salle;
-
+    private RepartitionDTO repartition;
 }

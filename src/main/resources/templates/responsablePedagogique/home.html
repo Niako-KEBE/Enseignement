@@ -1,0 +1,160 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="fr" xmlns:th="http://www.thymeleaf.org">-->
+<!--   <head th:replace="/fragments :: head">-->
+<!--   </head>-->
+<!--   <body class="fixed-bottom-padding">-->
+<!--   &lt;!&ndash; Dark mode &ndash;&gt;-->
+<!--   <div th:replace="/fragments :: top-wrapper"></div>-->
+<!--   &lt;!&ndash; End Dark mode &ndash;&gt;-->
+<!--   <div class="fixed-top">-->
+<!--      <div th:replace="/fragments :: top-bar"></div>-->
+<!--      <div th:replace="/fragments :: border-bottom"></div>-->
+<!--      &lt;!&ndash; Nav bar &ndash;&gt;-->
+<!--      <div th:replace="/fragments :: top-navBar"></div>-->
+<!--      &lt;!&ndash; bread_cum &ndash;&gt;-->
+<!--      <nav th:replace="/fragments :: navBefordsertion"></nav>-->
+<!--   </div>-->
+<!--   <br><br><br><br><br><br>-->
+<!--      <section class="py-4 osahan-main-body">-->
+<!--         <div class="container">-->
+<!--            <div class="row">-->
+<!--               <div class="col-lg-12">-->
+<!--                  &lt;!&ndash; home page &ndash;&gt;-->
+<!--                  <div class="osahan-home-page">-->
+<!--                     &lt;!&ndash; body &ndash;&gt;-->
+<!--                     <div class="osahan-body">-->
+<!--                        &lt;!&ndash; categories &ndash;&gt;-->
+<!--                        <div class="pt-3 pb-2 rounded osahan-categories">-->
+<!--                           <div class="d-flex align-items-center mb-2">-->
+<!--                              <h5 class="m-0 text-white">Que cherchez-vous?</h5>-->
+<!--                           </div>-->
+<!--            <div class="modal-body p-0">-->
+<!--               <div class="tab-content" id="nav-tabContent">-->
+<!--                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">-->
+<!--                     <div class="osahan-signin p-4 rounded">-->
+<!--                        <div class="p-2">-->
+<!--                           <h2 class="my-0"> Heureux de te retrouver</h2>-->
+<!--                           <p class="small mb-4">Connectez-vous pour continuer.</p>-->
+<!--                           <div th:if="${param.error}">-->
+<!--                              <div class="alert alert-danger">-->
+<!--                                 Email ou  mot de passe invalide.-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                           <form autocomplete="on" action="#" th:action="@{/connecter}" method="POST">-->
+<!--                              <div class="form-group">-->
+<!--                                 <label for="exampleInputEmail1">Email</label>-->
+<!--                                 <input placeholder="Entrez votre adresse email" name="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+<!--                              </div>-->
+<!--                              <div class="form-group">-->
+<!--                                 <label for="exampleInputPassword1">Mot de passe</label>-->
+<!--                                 <input placeholder="Entrez votre mot de passe" type="password" name="password" class="form-control" id="exampleInputPassword1">-->
+<!--                              </div>-->
+<!--                              <button type="submit" class="btn btn-success btn-lg rounded btn-block">S'identifier</button>-->
+<!--                           </form>-->
+<!--                           <p class="text-center mt-3 mb-0"><a data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" class="text-dark">Vous n'avez pas de compte ? Demandez à l'administrateur!</a></p>-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
+<!--               </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer p-0 border-0">-->
+<!--               <div class="col-12 m-0 p-0">-->
+<!--                  <a class="btn border-top border-center btn-lg btn-block" data-dismiss="modal">Fermer</a>-->
+<!--               </div>-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   <div th:replace="/fragments :: script"></div>-->
+
+<!--               </div>-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </section>-->
+
+<!--   &lt;!&ndash; Salles avec leurs images &ndash;&gt;-->
+<!--   <div class="section">-->
+<!--      <h5>Salles avec leurs images</h5>-->
+<!--      <div class="row">-->
+<!--         &lt;!&ndash; Utilisez Thymeleaf pour itérer sur les salles depuis le modèle &ndash;&gt;-->
+<!--         <div th:each="salle : ${listeDesSalles}">-->
+<!--            <div class="col-md-4">-->
+<!--               <img th:src="@{'./assets/images/salles/' + ${salle.image}}" class="img-fluid" alt="Salle" />-->
+<!--               <p th:text="${salle.nom}"></p>-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+<!--   &lt;!&ndash; Bâtiments &ndash;&gt;-->
+<!--   <div class="section">-->
+<!--      <h5>Bâtiments</h5>-->
+<!--      <div class="row">-->
+<!--         &lt;!&ndash; Utilisez Thymeleaf pour itérer sur les bâtiments depuis le modèle &ndash;&gt;-->
+<!--         <div th:each="batiment : ${listeDesBatiments}">-->
+<!--            <div class="col-md-4">-->
+<!--               <p th:text="${batiment.nom}"></p>-->
+<!--               &lt;!&ndash; Ajoutez d'autres informations du bâtiment selon votre modèle &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   &lt;!&ndash; Bâtiments &ndash;&gt;-->
+<!--   <div class="section">-->
+<!--      <h5>Repartitions</h5>-->
+<!--      <div class="row">-->
+<!--         &lt;!&ndash; Utilisez Thymeleaf pour itérer sur les bâtiments depuis le modèle &ndash;&gt;-->
+<!--         <div th:each="repartition : ${listeDesRepartitions}">-->
+<!--            <div class="col-md-4">-->
+<!--               <p th:text="${repartion.nom}"></p>-->
+<!--               &lt;!&ndash; Ajoutez d'autres informations du bâtiment selon votre modèle &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   &lt;!&ndash; Bâtiments &ndash;&gt;-->
+<!--   <div class="section">-->
+<!--      <h5>Filieres</h5>-->
+<!--      <div class="row">-->
+<!--         &lt;!&ndash; Utilisez Thymeleaf pour itérer sur les bâtiments depuis le modèle &ndash;&gt;-->
+<!--         <div th:each="filiere : ${listeDesFilieres}">-->
+<!--            <div class="col-md-4">-->
+<!--               <p th:text="${filiere.nom}"></p>-->
+<!--               &lt;!&ndash; Ajoutez d'autres informations du bâtiment selon votre modèle &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   &lt;!&ndash; Bâtiments &ndash;&gt;-->
+<!--   <div class="section">-->
+<!--      <h5>Modules</h5>-->
+<!--      <div class="row">-->
+<!--         &lt;!&ndash; Utilisez Thymeleaf pour itérer sur les bâtiments depuis le modèle &ndash;&gt;-->
+<!--         <div th:each="module : ${listeDesModules}">-->
+<!--            <div class="col-md-4">-->
+<!--               <p th:text="${module.nom}"></p>-->
+<!--               &lt;!&ndash; Ajoutez d'autres informations du bâtiment selon votre modèle &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   &lt;!&ndash; Emplois du temps &ndash;&gt;-->
+<!--   <div class="section">-->
+<!--      <h5>Emplois du temps</h5>-->
+<!--      <div class="row">-->
+<!--         &lt;!&ndash; Utilisez Thymeleaf pour itérer sur les emplois du temps depuis le modèle &ndash;&gt;-->
+<!--         <div th:each="emploiDuTemps : ${listeDesEmploisDuTemps}">-->
+<!--            <div class="col-md-4">-->
+<!--               &lt;!&ndash; Affichez les détails de l'emploi du temps selon votre modèle &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--   </div>-->
+
+<!--   </body>-->
+
+<!-- </html>-->

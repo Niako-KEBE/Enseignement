@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Métadonnées -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Chargement des styles -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" href="../static/css/buttons.dataTables.min.css" th:href="@{/css/buttons.dataTables.min.css}" />
+    <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css" th:href="@{/css/jquery.dataTables.min.css}" />
+
+    <script src="../static/js/jquery-3.7.0.js" th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="../static/js/dataTables.buttons.min.js" th:src="@{/js/dataTables.buttons.min.js}"></script>
+    <script src="../static/js/jquery.dataTables.min.js" th:src="@{/js/jquery.dataTables.min.js}"></script>
+
+    <title>Page pour les UEs</title>
+</head>
+<body>
+<!-- Bouton pour ajouter une UE -->
+<div class="row" style="padding: 10px 0;">
+    <div style="text-align: center;">
+        <!-- Utilisation du bouton bootstrap -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form_Ajouter_UE" style="border-radius: 50%;">
+            ADD
+        </button>
+    </div>
+</div>
+<!-- Boite Modal pour ajouter EC-->
+<div class="modal fade" id="form_Ajouter_EC">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--modal Header-->
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Ajouter un EC
+                </h4>
+            </div>
+            <!-- Modal Body -->
+            <form th:action="@{/ajouter_ec}" method="post">
+                <div class="modal-body">
+                    <!-- Utilisation de classes pour aligner les éléments -->
+                    <div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" class="form-control" id="code" name="code" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="libelle">Libelle</label>
+                        <input type="text" class="form-control" id="libelle" name="libelle" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cm">Cours Magistraux (CM)</label>
+                        <input type="text" class="form-control" id="cm" name="cm" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="td">Travaux Dirigés (TD)</label>
+                        <input type="text" class="form-control" id="td" name="td" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tp">Travaux Pratiques (TP)</label>
+                        <input type="text" class="form-control" id="tp" name="tp" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tpe">Travaux Pratiques Encadrés (TPE)</label>
+                        <input type="text" class="form-control" id="tpe" name="tpe" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coefficient">Coefficient</label>
+                        <input type="text" class="form-control" id="coefficient" name="coefficient" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success" type="submit">Ajouter EC</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Debut Lister de ECs -->
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" id="table_EC">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Libelle</th>
+            <th>Code</th>
+            <th>CM</th>
+            <th>TD</th>
+            <th>TP</th>
+            <th>TPE</th>
+            <th>Coefficient</th>
+            <th colspan="2">Operations</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Boucle sur la liste des ECs -->
+        <tr th:each="ec:${listeDesEC}">
+            <!-- Utilisation de th:text pour définir le texte des cellules -->
+            <td th:text="${ec.id}"></td>
+            <td th:text="${ec.libelle}"></td>
+            <td th:text="${ec.code}"></td>
+            <td th:text="${ec.cm}"></td>
+            <td th:text="${ec.td}"></td>
+            <td th:text="${ec.tp}"></td>
+            <td th:text="${ec.tpe}"></td>
+            <td th:text="${ec.coefficient}"></td>
+            <td>
+                <button
+                        class="btn btn-danger"
+                        data-title="Delete"
+                        data-toggle="modal"
+                        th:attr="data-target='#form_Supprimer_EC'+${ec.id}">
+                    Delete
+                </button>
+            </td>
+            <td>
+                <button
+                        class="btn btn-info"
+                        data-title="Edit"
+                        data-toggle="modal"
+                        th:attr="data-target='#form_Modifier_EC'+${ec.id}"
+                >
+                    Modifier
+                </button>
+            </td>
+            <td>
+                <!-- Utilisation de th:href pour définir l'URL -->
+                <a class="btn btn-primary btn-sm" th:href="@{/details_ec(id=${ec.id})}">Voir</a>
+            </td>
+
+            <!-- Boite modal pour modifier EC -->
+            <div class="modal fade" th:attr="id='form_Modifier_EC'+${ec.id}">
+                <!-- Contenu du formulaire de modification -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!--modal Header-->
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                Modifier un EC
+                            </h4>
+                        </div>
+                        <!-- Modal Body -->
+                        <form th:action="@{/modifier_ec}" method="post">
+                            <div class="modal-body">
+                                <div style="display: none;">
+                                    <input type="text" name="id" id="id" th:value="${ec.id}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="code">Code</label>
+                                    <input type="text" class="form-control" id="code" name="code" th:value="${ec.code}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="libelle">Libelle</label>
+                                    <input type="text" class="form-control" id="libelle" name="libelle" th:value="${ec.libelle}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="cm">Cours Magistraux (CM)</label>
+                                    <input type="text" class="form-control" id="cm" name="cm" th:value="${ec.cm}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="td">Travaux Dirigés (TD)</label>
+                                    <input type="text" class="form-control" id="td" name="td" th:value="${ec.td}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="tp">Travaux Pratiques (TP)</label>
+                                    <input type="text" class="form-control" id="tp" name="tp" th:value="${ec.tp}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="tpe">Travaux Pratiques Encadrés (TPE)</label>
+                                    <input type="text" class="form-control" id="tpe" name="tpe" th:value="${ec.tpe}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="coefficient">Coefficient</label>
+                                    <input type="text" class="form-control" id="coefficient" name="coefficient" th:value="${ec.coefficient}" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                <button class="btn btn-primary" type="submit">Modifier EC</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boite modal pour supprimer EC -->
+            <div class="modal fade" th:attr="id='form_Supprimer_EC'+${ec.id}">
+                <!-- Contenu du formulaire de suppression -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!--modal Header-->
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                Supprimer un EC
+                            </h4>
+                        </div>
+                        <!-- Modal Body -->
+                        <form th:action="@{/supprimer_ec}" method="post">
+                            <div class="modal-body">
+                                <div style="display: none;">
+                                    <input type="text" name="id" id="id" th:value="${ec.id}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="code">Code</label>
+                                    <input type="text" class="form-control" id="code" name="code" th:value="${ec.code}" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="libelle">Libelle</label>
+                                    <input type="text" class="form-control" id="libelle" name="libelle" th:value="${ec.libelle}" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="cm">Cours Magistraux (CM)</label>
+                                    <input type="text" class="form-control" id="cm" name="cm" th:value="${ec.cm}" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="td">Travaux Dirigés (TD)</label>
+                                    <input type="text" class="form-control" id="td" name="td" th:value="${ec.td}" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="tp">Travaux Pratiques (TP)</label>
+                                    <input type="text" class="form-control" id="tp" name="tp" th:value="${ec.tp}" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="tpe">Travaux Pratiques Encadrés (TPE)</label>
+                                    <input type="text" class="form-control" id="tpe" name="tpe" th:value="${ec.tpe}" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="coefficient">Coefficient</label>
+                                    <input type="text" class="form-control" id="coefficient" name="coefficient" th:value="${ec.coefficient}" readonly />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                <button class="btn btn-danger" type="submit">Supprimer EC</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Script jQuery pour initialiser le plugin DataTable -->
+<script>
+    $(document).ready(function(){
+        <!-- Commentaire: La fonction $(document).ready() s'exécute lorsque le document HTML est complètement chargé. -->
+
+        $("#table_EC").DataTable({});
+        <!-- Commentaire: Sélectionne l'élément avec l'ID "table_EC" et initialise le plugin DataTable. -->
+
+        <!-- Note: Ce script utilise la bibliothèque jQuery et le plugin DataTable pour améliorer la fonctionnalité de la table. -->
+    });
+</script>
+

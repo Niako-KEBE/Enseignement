@@ -1,0 +1,80 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="fr" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head th:replace="/responsablePedagogique/fragments :: header"></head>-->
+
+<!--<body>-->
+<!--<div class="wrapper">-->
+<!--    &lt;!&ndash; Inclure l'en-tête supérieur et la barre latérale &ndash;&gt;-->
+<!--    <header th:replace="/responsablePedagogique/fragments :: topHeader"></header>-->
+<!--    <aside th:replace="/responsablePedagogique/fragments :: sidebarWrapper"></aside>-->
+
+<!--    <main class="page-content">-->
+<!--        &lt;!&ndash; Fil d'Ariane &ndash;&gt;-->
+<!--        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">-->
+<!--            <div class="breadcrumb-title pe-3">Responsable Pédagogique</div>-->
+<!--            <div class="ps-3">-->
+<!--                <nav aria-label="breadcrumb">-->
+<!--                    <ol class="breadcrumb mb-0 p-0">-->
+<!--                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></li>-->
+<!--                        <li class="breadcrumb-item active" aria-current="page">Gestion des Classes</li>-->
+<!--                    </ol>-->
+<!--                </nav>-->
+<!--            </div>-->
+<!--        </div>s-->
+
+<!--        &lt;!&ndash; Section des détails de la classe &ndash;&gt;-->
+<!--        <div class="card">-->
+<!--            <div class="card-body">-->
+<!--                <h3 class="card-title">Détails de la Classe</h3>-->
+
+<!--                <p><strong>ID:</strong> <span th:text="${classDetails.id}"></span></p>-->
+<!--                <p><strong>Libellé:</strong> <span th:text="${classDetails.libelle}"></span></p>-->
+<!--                <p><strong>Effectif:</strong> <span th:text="${classDetails.effectif}"></span></p>-->
+<!--                <p><strong>Nombre de Groupes:</strong> <span th:text="${classDetails.nbreGroupe}"></span></p>-->
+<!--                <p><strong>Description:</strong> <span th:text="${classDetails.description}"></span></p>-->
+
+<!--                <h4>Enseignements:</h4>-->
+<!--                <ul>-->
+<!--                    <li th:each="enseignement : ${classDetails.enseignement}" th:text="${enseignement.description}"></li>-->
+<!--                </ul>-->
+
+<!--                <p><strong>Semestre:</strong> <span th:text="${classDetails.semestre.libelle}"></span></p>-->
+
+<!--                <h4>Groupes:</h4>-->
+<!--                <ul>-->
+<!--                    <li th:each="groupe : ${classDetails.groupes}" th:text="${groupe.libelle}"></li>-->
+<!--                </ul>-->
+
+<!--                <p><strong>Formation:</strong> <span th:text="${classDetails.formation.nom}"></span></p>-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--    </main>-->
+
+<!--    &lt;!&ndash; Superposition et bouton de retour en haut &ndash;&gt;-->
+<!--    <div class="overlay nav-toggle-icon"></div>-->
+<!--    <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>-->
+
+<!--    &lt;!&ndash; Inclure la modal pour ajouter une classe &ndash;&gt;-->
+<!--    <div th:replace="/responsablePedagogique/classeList :: modalAddClass"></div>-->
+
+<!--    &lt;!&ndash; Inclure la modal pour mettre à jour une classe &ndash;&gt;-->
+<!--    <div th:replace="/responsablePedagogique/classeList :: modalUpdateClass"></div>-->
+
+<!--    &lt;!&ndash; Inclure la modal pour supprimer une classe &ndash;&gt;-->
+<!--    <div th:replace="/responsablePedagogique/fragments :: modalDelete"></div>-->
+
+<!--    &lt;!&ndash; Bootstrap bundle JS et script d'initialisation de DataTable &ndash;&gt;-->
+<!--    <div th:replace="/responsablePedagogique/fragments :: footerScript"></div>-->
+<!--    <script>-->
+<!--        $(document).ready(function () {-->
+<!--            $('#myTable').DataTable();-->
+<!--        });-->
+<!--    </script>-->
+<!--</div>-->
+<!--</body>-->
+
+<!--</html>-->

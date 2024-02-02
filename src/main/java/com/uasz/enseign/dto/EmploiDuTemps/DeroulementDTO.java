@@ -10,12 +10,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeroulementDTO {
-
-    private Long idDeroulement;
-    private String objectifs;
-    private String description;
-    private Date dateCreation;
+    private Long id;
+    private String matiere;
+    private Date date;
+    private String processus;
     private SeanceDTO seance;
-
-    // Aucun besoin d'ajouter explicitement des méthodes getter et setter grâce à Lombok
 }

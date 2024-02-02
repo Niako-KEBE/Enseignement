@@ -1,41 +1,32 @@
 package com.uasz.enseign.repository.Maquette;
 
-import com.uasz.enseign.entities.Maquette.Classe;
-import com.uasz.enseign.entities.Maquette.Groupe;
-import com.uasz.enseign.entities.Repartition.Enseignement;
+import com.uasz.enseign.model.Maquette.Classe; // Importez l'entité plutôt que le DTO
+import com.uasz.enseign.model.Maquette.Semestre;
+import com.uasz.enseign.model.Maquette.Formation;
+import com.uasz.enseign.model.Maquette.Enseignement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ClasseRepository extends JpaRepository<Classe, Long> {
 
-    // Méthode pour rechercher une classe par son libellé
-    Optional<Classe> findByLibelle(String libelle);
+    List<Classe> findByLibelle(String libelle);
 
-    // Méthode pour rechercher les classes associées à un semestre donné
-    List<Classe> findBySemestre_Id(Long semestreId);
-
-    // Méthode pour rechercher les classes ayant un certain effectif
     List<Classe> findByEffectif(int effectif);
 
-    // Méthode pour rechercher les classes ayant un certain nombre de groupes
+    List<Classe> findByFormation(Formation formation);
+
+    @Query("SELECT c FROM Classe c WHERE c.libelle = :libelle AND c.formation = :formation")
+    List<Classe> findByLibelleAndFormation(@Param("libelle") String libelle, @Param("formation") Formation formation);
+
     List<Classe> findByNbreGroupe(int nbreGroupe);
 
-    // Méthode personnalisée pour rechercher les classes par description en utilisant la convention de nommage de Spring Data JPA
-    List<Classe> findByDescriptionContainingIgnoreCase(String description);
+    List<Classe> findBySemestre(Semestre semestre);
 
-    // Méthode personnalisée pour rechercher les enseignements associés à une classe donnée
-    @Query("SELECT e FROM Enseignement e WHERE e.classe = ?1")
-    List<Enseignement> findEnseignementsByClasse(Classe classe);
-
-    // Méthode personnalisée pour rechercher les groupes associés à une classe donnée
-    @Query("SELECT g FROM Groupe g WHERE g.classe = ?1")
-    List<Groupe> findGroupesByClasse(Classe classe);
-
-    // Autres méthodes personnalisées selon vos besoins
-
+    @Query("SELECT c FROM Classe c JOIN c.enseignement e WHERE e = :enseignement")
+    List<Classe> findByEnseignement(@Param("enseignement") Enseignement enseignement);
 }
